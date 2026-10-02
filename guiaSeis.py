@@ -3,13 +3,19 @@ import math
 def imprimir_hola_mundo():
     return print("¡Hola mundo!")
 
-def raizDe2():
-    res = math.sqrt(2)
-    return round(res,4)
+raizDe2 = round(math.sqrt(2),4) 
 
-def factorial_2() -> int:
-    res = math.factorial(2)
-    return res
+factorial_2 = math.factorial(2)
 
-def perimetro() -> float:
-    return 2*math.pi
+perimetro = 2*math.pi
+
+#ejercicio 2
+
+def imprimir_saludo(nombre: str) ->str:
+    res = ("hola")
+    print(res)
+
+imprimir_hola_mundo()
+print(raizDe2)
+print(factorial_2)
+print(perimetro)
