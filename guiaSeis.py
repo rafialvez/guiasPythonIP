@@ -10,12 +10,3 @@ factorial_2 = math.factorial(2)
 perimetro = 2*math.pi
 
 #ejercicio 2
-
-def imprimir_saludo(nombre: str) ->str:
-    res = ("hola")
-    print(res)
-
-imprimir_hola_mundo()
-print(raizDe2)
-print(factorial_2)
-print(perimetro)
