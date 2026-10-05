@@ -33,3 +33,28 @@ def es_multiplo_de(n:int, m:int) ->bool:
 def es_par(numero:int) -> bool:
     return es_multiplo_de(numero,2)
 
+#ejercicio 3
+def alguno_es_0(numero1:int, numero2:int)->bool:
+    return (numero1==0 or numero2==0)
+
+def ambos_son_0(numero1:int, numero2:int)->bool:
+    return (numero1==0 and numero2==0)
+
+def es_nombre_largo(nombre:str)->bool:
+    return (len(nombre)>=3) and (len(nombre)<=8)
+
+def es_bisiesto(año:int)->bool:
+    return (((año%400)==0) or (año%4==0 and not(año%100==0)))
+
+def peso_pino(metros:float)->float:
+    if metros<=3:
+        peso = (metros*100)*3
+    else:
+        peso = 3*100*3 + (metros-3)*100*2
+    return peso
+
+def es_peso_util(peso:float)->bool:
+    return peso>=400 and peso<=1000
+
+def sirve_pino(altura_pino:float)->bool:
+    return es_peso_util(peso_pino(altura_pino))
