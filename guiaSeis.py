@@ -46,6 +46,7 @@ def es_nombre_largo(nombre:str)->bool:
 def es_bisiesto(año:int)->bool:
     return (((año%400)==0) or (año%4==0 and not(año%100==0)))
 
+#ejercicio 4
 def peso_pino(metros:float)->float:
     if metros<=3:
         peso = (metros*100)*3
@@ -58,3 +59,28 @@ def es_peso_util(peso:float)->bool:
 
 def sirve_pino(altura_pino:float)->bool:
     return es_peso_util(peso_pino(altura_pino))
+
+#ejercicio 6
+def numeros1al10():
+    i=1
+    while i<11:
+        print(i)
+        i=i+1
+
+def numerospares():
+    i=10
+    while i<41:
+        print(i)
+        i=i+2
+
+def imprimeeco():
+    i=0
+    while i<10:
+        print("eco")
+        i=i+1
+
+def cuentacohete(numero:int):
+    while numero!=0:
+        print(numero)
+        numero=numero-1
+    print("Despegue")
