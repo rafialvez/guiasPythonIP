@@ -84,3 +84,46 @@ def cuentacohete(numero:int):
         print(numero)
         numero=numero-1
     print("Despegue")
+
+#ejercicio 5
+def doble_si_es_par(numero:int)->int:
+    if numero%2==0:
+        numero = numero*2
+    return numero
+
+def devolver_valor_si_es_par_si_no_el_que_sigue(numero: int)->int:
+    if numero%2==0:
+        numero = numero*2
+    else:
+        numero +=1
+    return numero
+
+def lindo_nombre(nombre:str)->str:
+    if len(str)>=5:
+        res :str = print("Tu nombre tiene muchas letras!")
+    else:
+        res :str = print("Tu nombre tiene menos de 5 caracteres")
+    return res
+
+def elRango(numero:int ):
+    if numero<5:
+        res: str = print("Menor a 5")
+    elif numero >=10 and numero<=20:
+        res: str = print("Entre 10 y 20")
+    elif numero >20:
+        res: str=print("Mayor a 20")
+    return res
+
+def pala_o_jubilacion(sexo:str, edad:int):
+    if edad<18:
+        res:str = print("Andá de vacaciones")
+    elif (sexo=="M" and edad>=65) or (sexo=="F" and edad>=60):
+        res:str = print("Andá de vacaciones")
+    else:
+        res:str = print("Te toca trabajar")
+    return res
+
+def numeros_1_al_10_for():
+    for i in range(1,11):
+        print (i)
+
