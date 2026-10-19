@@ -5,6 +5,14 @@ def pertenece(s:list[int], e:int)->bool:
         res = res or e == i
     return res
 
+#para tateti
+
+def pertenece_str(s:list[str], e:str)->bool:
+    res:bool = False
+    for i in s:
+        res = res or e == i
+    return res
+
 def suma_total(s: list[int])->int:
     res = 0
     for i in range(0,len(s)):
@@ -184,3 +192,96 @@ def longitudIgual(s:list[list[int]])->bool:
         if len(i)!=longitudParametro:
             sonTodasIguales = False
     return sonTodasIguales
+
+#ejercicio 3: matrices
+def pertenece_a_cada_uno_version_1(s:list[list[int]],e:int)->list[bool]:
+    perteneceEnCadaUno:list[bool] = []
+    for fila in s:
+        perteneceEnCadaUno.append(pertenece(fila,e))
+    return perteneceEnCadaUno
+
+type tipoMatriz = list[list[int]]
+
+def filas_ordenadas(m:tipoMatriz)->list[bool]:
+    lista_booleanos_filas:list[bool] = []
+    for fila in m:
+        lista_booleanos_filas.append(ordenados(fila))
+    return lista_booleanos_filas
+
+def columna(m:tipoMatriz, c:list[int])->list[int]:
+    lista_columna:list[int] = []
+    for fila in m:
+        lista_columna.append(fila[c])
+    return lista_columna
+
+def columnas_ordenadas(m:tipoMatriz)->list[bool]:
+    matriz_de_columnas:tipoMatriz = transponer(m)
+    return filas_ordenadas(matriz_de_columnas)
+
+def transponer(m:list[list[int]])->list[list[int]]:
+    columnas: list[list[int]] = []
+    cant_filas = len(m)
+    cant_columnas = len(m[0])
+    for i in range(cant_columnas):
+        columna:list[int] = []
+        for j in range(cant_filas):
+            columna.append(m[j][i])
+        columnas.append(columna)
+    return columnas
+
+def quien_gana_tateti(m:list[list[str]])->int:
+    res:int = 2
+    if casos_O_ganadora(m) == True:
+        res = 0
+    elif casos_X_ganadora(m) == True:
+        res = 1
+    return res
+
+def casos_O_ganadora(m:list[list[str]])->bool:
+    res = False
+    for fila in m:
+        if pertenece_str(fila,"X")==False:
+            res = True
+    for falsaFila in transponer(m):
+        if pertenece_str(falsaFila,"X")==False:
+            res = True
+    diagonal:list[str] = funcion_diagonal(m)
+    if pertenece_str(diagonal,"X")==False:
+        res = True
+    return res
+
+def casos_X_ganadora(m:list[list[str]])->bool:
+    res = False
+    for fila in m:
+        if pertenece_str(fila,"O")==False:
+            res = True
+    for falsaFila in transponer(m):
+        if pertenece_str(falsaFila,"O")==False:
+            res = True
+    diagonal:list[str] = funcion_diagonal(m)
+    if pertenece_str(diagonal,"O")==False:
+        res = True
+    return res
+
+def funcion_diagonal(m:list[list[str]])->list[str]:
+    diagonal:list[str] = []
+    cant_filas = len(m)
+    cant_columnas = cant_filas
+    i:int=0
+    j:int=0
+    while i < cant_filas:
+        while j<cant_columnas:
+            if i==j:
+                diagonal.append(m[i][j])
+            j = j + 1
+        j = 0
+        i = i+1
+    return diagonal
+
+def lista_de_estudiantes():
+    lista: list[str] = []
+    estudiante: str = input("Introducí el nombre del capo de tu estudiante")
+    while estudiante != "listo":
+        lista.append(estudiante)
+        estudiante
+    return lista
