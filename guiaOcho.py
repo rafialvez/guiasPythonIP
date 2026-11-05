@@ -1,6 +1,98 @@
 from queue import LifoQueue as Pila
 from queue import Queue as Cola
+import random
 
+#ejercicio 1
+def generar_nros_al_azar(cantidad: int, desde: int, hasta: int)->Pila[int]:
+    pilaConNros: Pila[int] = Pila()
+    for i in range(cantidad):
+        pilaConNros.put(random.randint(desde,hasta))
+    return pilaConNros
+
+def cantidad_elementos(p: Pila)->int:
+    i: int = 0
+    pilaTemporal: Pila = Pila()
+    while not p.empty():
+        valor_de_pila = p.get()
+        pilaTemporal.put(valor_de_pila)
+        i += 1
+    while not pilaTemporal.empty():
+        p.put(pilaTemporal.get())
+    return i
+
+def buscar_el_maximo(p: Pila[int])->int:
+    pilaTemporal: Pila = Pila()
+    max: int = p.get()
+    p.put(max)
+    while not p.empty():
+        valor_temp: int = p.get()
+        if valor_temp>max:
+            max = valor_temp
+        pilaTemporal.put(valor_temp)
+    while not pilaTemporal.empty():
+        p.put(pilaTemporal.get())
+    return max
+
+def buscar_nota_maxima(p: Pila[(str,int)])->tuple[str,int]:
+    pilaTemporal: Pila = Pila()
+    referencia: tuple[str,int] = p.get()
+    nota_referencia: int = referencia[1]
+    p.put(referencia)
+    while not p.empty():
+        valor_temp: int = p.get()
+        nota = valor_temp[1]
+        if nota>nota_referencia:
+            nota_referencia = nota
+            referencia = valor_temp
+        pilaTemporal.put(valor_temp)
+    while not pilaTemporal.empty():
+        p.put(pilaTemporal.get())
+    return nota_referencia
+
+#colas
+
+def generar_colas_al_azar(cantidad:int, desde:int, hasta: int)->Cola[int]:
+    cola: Cola[int] = Cola()
+    for i in range(cantidad):
+        cola.put(random.randint(desde,hasta))
+    return cola
+
+def problema_cantidad_elementos(c:Cola)->int:
+    cant: int = 0
+    colaTemporal: Cola = Cola()
+    while not c.empty():
+        valor = c.get()
+        colaTemporal.put(valor)
+        cant +=1
+    while not colaTemporal.empty():
+        c.put(colaTemporal.get())
+    return cant
+
+def buscar_el_maximo_cola(c: Cola[int])->int:
+    lista_de_cola: list[int] = []
+    while not c.empty():
+        valor: int = c.get()
+        lista_de_cola.append(valor)
+    max = lista_de_cola[0]
+    for i in lista_de_cola:
+        if i>max:
+            max = i
+        c.put(i)
+    return max
+
+def buscar_nota_minima(c: Cola[tuple[str,int]])->tuple[str,int]:
+    lista_de_cola: list[int] = []
+    while not c.empty():
+        valor: int = c.get()
+        lista_de_cola.append(valor)
+    nota_referencia: tuple[str,int] = lista_de_cola[0]
+    min: int = lista_de_cola[0][1]
+    for (nombre, nota) in lista_de_cola:
+        if nota<min:
+            min = nota
+            nota_referencia = (nombre,nota)
+        c.put((nombre,nota))
+    return nota_referencia
 
 def calcular_promedio_por_estudiante(notas:list[(str,float)])->dict[str,float]:
     dict_notas: dict[str,float] = {}
